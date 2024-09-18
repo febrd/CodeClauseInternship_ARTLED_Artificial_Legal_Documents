@@ -1,0 +1,67 @@
+<.header>
+  Listing Documents
+  <:actions>
+    <.link patch={~p"/documents/new"}>
+      <.button>New Document</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="documents"
+  rows={@streams.documents}
+  row_click={fn {_id, document} -> JS.navigate(~p"/documents/#{document}") end}
+>
+  <:col :let={{_id, document}} label="Title">
+    <%= if @expanded_document_id == document.id do %>
+      <%= document.title %>
+    <% else %>
+      <%= truncate_text(document.title, 30) %>
+      <%= if String.length(document.title) > 30 do %>
+       <% end %>
+    <% end %>
+  </:col>
+
+  <:col :let={{_id, document}} label="Summary">
+    <%= if @expanded_document_id == document.id do %>
+      <%= raw(document.summary) %>
+    <% else %>
+      <%= raw(truncate_text(document.summary, 100)) %>
+      <%= if String.length(document.summary) > 100 do %>
+          <% end %>
+    <% end %>
+  </:col>
+
+
+  <:col :let={{_id, document}} label="File path"><%= document.file_path %></:col>
+  <:col :let={{_id, document}} label="Sentiment"><%= document.sentiment %></:col>
+  <:col :let={{_id, document}} label="Status"><%= document.status %></:col>
+  
+  <:action :let={{_id, document}}>
+    <div class="sr-only">
+      <.link navigate={~p"/documents/#{document}"}>Show</.link>
+    </div>
+    <.link patch={~p"/documents/#{document}/edit"}>Edit</.link>
+  </:action>
+
+  <:action :let={{id, document}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: document.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+
+<.modal :if={@live_action in [:new, :edit]} id="document-modal" show on_cancel={JS.patch(~p"/documents")}>
+  <.live_component
+    module={LegalDocWeb.DocumentLive.FormComponent}
+    id={@document.id || :new}
+    title={@page_title}
+    action={@live_action}
+    document={@document}
+    patch={~p"/documents"}
+  />
+</.modal>

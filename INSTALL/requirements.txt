@@ -1,0 +1,14 @@
+spacy==3.5.0
+PyMuPDF==1.21.1  # For PDF extraction (fitz)
+pytesseract==0.3.8
+Pillow==9.5.0  # Image handling
+python-pptx==0.6.21  # For PPTX handling
+pandas==1.5.3  # For Excel and CSV handling
+openpyxl==3.0.10  # For Excel support (XLSX files)
+python-docx==0.8.11  # For DOCX handling
+langdetect==1.0.9  # Multilingual Detection
+transformers==4.28.0  # Hugging Face for summarization and sentiment analysis
+torch==2.0.0  # Required for Hugging Face models
+vaderSentiment==3.3.2  # VADER sentiment analysis
+sentencepiece==0.1.97  # Multiple Chunk handling for models
+huggingface-hub==0.16.4  # Hugging Face Hub for models and tokenization

@@ -1,0 +1,5 @@
+id,name,email,department,hire_date,salary
+1,John Doe,john.doe@example.com,Human Resources,2021-01-15,60000
+2,Jane Smith,jane.smith@example.com,Engineering,2020-06-01,80000
+3,Emily Johnson,emily.johnson@example.com,Engineering,2019-11-23,75000
+4,Michael Brown,michael.brown@example.com,Marketing,2022-03-12,65000

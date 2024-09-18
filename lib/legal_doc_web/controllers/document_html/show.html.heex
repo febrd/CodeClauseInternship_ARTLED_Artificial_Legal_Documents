@@ -1,0 +1,20 @@
+<.header>
+  Document <%= @document.file_path %>
+  <:subtitle>This is a document record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/documents/#{@document}/edit"}>
+      <.button>Edit document</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Title"><%= @document.title %></:item>
+  <:item title="Summary"><%= raw(@document.summary) %></:item>
+  <:item title="Sentiment"><%= @document.sentiment %></:item>
+  <:item title="Status"><%= @document.status %></:item>
+  <:item title="Filename"><%= @document.file_path %></:item>
+</.list>
+
+<.back navigate={~p"/documents"}>Back to documents</.back>
+
