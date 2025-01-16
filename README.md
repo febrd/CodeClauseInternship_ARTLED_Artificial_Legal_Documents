@@ -66,7 +66,7 @@ The application employs **Elixir's Supervisor-Worker model** to manage tasks:
 
 This architecture ensures:
 - **High Performance**: Tasks are processed in parallel, reducing overall execution time.
-- **Fault Tolerance**: Failed tasks are automatically restarted by the Supervisor.
+- **Automatic Task Recovery**: Pending tasks are automatically restarted by the Supervisor in case of failure.
 
 ---
 
